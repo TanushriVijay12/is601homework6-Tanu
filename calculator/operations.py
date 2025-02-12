@@ -1,10 +1,3 @@
-"""
-Operations module
-
-This module defines basic arithmetic operations such as addition, subtraction,
-multiplication, and division. Each operation takes two numbers as input and 
-returns the result.
-"""
 
 def add(a, b):
     """Return the sum of a and b."""
