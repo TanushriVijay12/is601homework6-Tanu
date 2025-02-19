@@ -1,14 +1,14 @@
 '''
-    This code snippet demonstrates how to define a class in Python that 
-    encapsulates a mathematical calculation, including two operands (a and b) 
-    and an operation (like add or subtract). 
-    The operation parameter is a higher-order function, meaning it takes 
-    functions as arguments or returns them. 
+    This code snippet demonstrates how to define a class in Python that
+    encapsulates a mathematical calculation, including two operands (a and b)
+    and an operation (like add or subtract).
+    The operation parameter is a higher-order function, meaning it takes
+    functions as arguments or returns them.
     This approach leverages Python's first-class functions to create 4
-    flexible and reusable code. The use of Decimal from the decimal 
-    module instead of floating-point numbers is crucial for 
-    financial and scientific calculations that require high precision. 
-    The __repr__ method provides a developer-friendly string representation 
+    flexible and reusable code. The use of Decimal from the decimal
+    module instead of floating-point numbers is crucial for
+    financial and scientific calculations that require high precision.
+    The __repr__ method provides a developer-friendly string representation
     of the object, useful for debugging and logging.
 '''
 # Import the Decimal class for precise decimal arithmetic
@@ -29,10 +29,10 @@ class Calculation:
         # Store the operation as a callable that takes two Decimals and returns a Decimal
         # This allows for flexible assignment of any function that matches this signature (like add, subtract, etc.)
         self.operation = operation
-    
+
     # Static method to create a new instance of Calculation
     # This method provides an alternative constructor that can be used without instantiating the class directly
-    @staticmethod    
+    @staticmethod
     def create(a: Decimal, b: Decimal, operation: Callable[[Decimal, Decimal], Decimal]):
         # Return a new Calculation object initialized with the provided arguments
         return Calculation(a, b, operation)
