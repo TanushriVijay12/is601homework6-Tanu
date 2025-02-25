@@ -6,6 +6,7 @@ from calculator.commands.subtract import SubtractCommand
 from calculator.commands.multiply import MultiplyCommand
 from calculator.commands.divide import DivideCommand
 from calculator.commands.menu import MenuCommand
+from calculator.commands.command import Command
 
 class Calculator:
     def __init__(self):
@@ -32,8 +33,10 @@ class Calculator:
                     for attr_name in dir(module):
                         attr = getattr(module, attr_name)
                         if isinstance(attr, type) and issubclass(attr, Command) and attr != Command:
-                            command_name = module_name  # Use the module name as the command name
-                            self.commands[command_name] = attr()  # Instantiate the command
+                            # Skip MenuCommand as it requires special handling
+                            if attr.__name__ != "MenuCommand":
+                                command_name = module_name  # Use the module name as the command name
+                                self.commands[command_name] = attr()  # Instantiate the command
 
     def run(self):
         """Run the interactive REPL for the calculator."""
