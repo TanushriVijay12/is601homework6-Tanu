@@ -31,3 +31,16 @@ def generate_test_data(num_records):
                 expected = "ZeroDivisionError"
 
         yield a, b, operation_name, operation, expected
+
+def pytest_addoption(parser):
+    parser.addoption("--num_records", action="store", default=5, type=int, help="Number of test records to generate")
+
+def pytest_generate_tests(metafunc):
+    # Check if the test is expecting any of the dynamically generated fixtures
+    if {"a", "b", "operation", "expected"}.intersection(set(metafunc.fixturenames)):
+        num_records = metafunc.config.getoption("num_records")
+        # Generate test data
+        parameters = list(generate_test_data(num_records))
+        # Modify parameters to fit test functions' expectations
+        modified_parameters = [(a, b, operation, expected) for a, b, _, operation, expected in parameters]
+        metafunc.parametrize("a,b,operation,expected", modified_parameters)
