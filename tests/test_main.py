@@ -16,3 +16,12 @@ def test_calculate_and_print(a_string, b_string, operation_string, expected_stri
     calculate_and_print(a_string, b_string, operation_string)
     captured = capsys.readouterr()
     assert captured.out.strip() == expected_string
+
+def test_repl_loop_exit(monkeypatch, capsys):
+    '''Test that the REPL loop exits when 'exit' is entered'''
+    # Simulate user input of 'exit'
+    monkeypatch.setattr('builtins.input', lambda _: 'exit')
+    from main import main
+    main()
+    captured = capsys.readouterr()
+    assert "Exiting calculator. Goodbye!" in captured.out
