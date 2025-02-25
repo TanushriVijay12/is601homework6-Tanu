@@ -1,44 +1,39 @@
-'''
+from decimal import Decimal
+from calculator.commands.add import AddCommand
+from calculator.commands.subtract import SubtractCommand
+from calculator.commands.multiply import MultiplyCommand
+from calculator.commands.divide import DivideCommand
+from calculator.calculation import Calculation
+from calculator.calculations import Calculations
 
-This Python code defines a Calculator class that provides a simple interface for performing arithmetic operations (addition, subtraction, multiplication, division) on Decimal numbers. The class uses static methods, demonstrating a functional approach within an object-oriented context.
-
-'''
-
-# Import necessary modules and classes
-from calculator.calculations import Calculations  # Manages history of calculations
-from calculator.operations import add, subtract, multiply, divide  # Arithmetic operations
-from calculator.calculation import Calculation  # Represents a single calculation
-from decimal import Decimal  # For high-precision arithmetic
-from typing import Callable  # For type hinting callable objects
-
-# Definition of the Calculator class
 class Calculator:
-    @staticmethod
-    def _perform_operation(a: Decimal, b: Decimal, operation: Callable[[Decimal, Decimal], Decimal]) -> Decimal:
-        """Create and perform a calculation, then return the result."""
-        # Create a Calculation object using the static create method, passing in operands and the operation
-        calculation = Calculation.create(a, b, operation)
-        # Add the calculation to the history managed by the Calculations class
-        Calculations.add_calculation(calculation)
-        # Perform the calculation and return the result
-        return calculation.perform()
+    def __init__(self):
+        # Initialize the commands dictionary
+        self.commands = {
+            "add": AddCommand(),
+            "subtract": SubtractCommand(),
+            "multiply": MultiplyCommand(),
+            "divide": DivideCommand(),
+        }
 
-    @staticmethod
-    def add(a: Decimal, b: Decimal) -> Decimal:
-        # Perform addition by delegating to the _perform_operation method with the add operation
-        return Calculator._perform_operation(a, b, add)
+    def run(self):
+        """Run the interactive REPL for the calculator."""
+        print("Welcome to the Interactive Calculator!")
+        print("Available commands: add, subtract, multiply, divide")
+        print("Type 'exit' to quit.")
 
-    @staticmethod
-    def subtract(a: Decimal, b: Decimal) -> Decimal:
-        # Perform subtraction by delegating to the _perform_operation method with the subtract operation
-        return Calculator._perform_operation(a, b, subtract)
-
-    @staticmethod
-    def multiply(a: Decimal, b: Decimal) -> Decimal:
-        # Perform multiplication by delegating to the _perform_operation method with the multiply operation
-        return Calculator._perform_operation(a, b, multiply)
-
-    @staticmethod
-    def divide(a: Decimal, b: Decimal) -> Decimal:
-        # Perform division by delegating to the _perform_operation method with the divide operation
-        return Calculator._perform_operation(a, b, divide)
+        while True:
+            user_input = input("Enter command: ").strip().lower()
+            if user_input == "exit":
+                print("Exiting calculator. Goodbye!")
+                break
+            if user_input in self.commands:
+                try:
+                    a = Decimal(input("Enter first number: "))
+                    b = Decimal(input("Enter second number: "))
+                    result = self.commands[user_input].execute(a, b)
+                    print(f"Result: {result}")
+                except ValueError as e:
+                    print(f"Error: {e}")
+            else:
+                print("Invalid command. Available commands: add, subtract, multiply, divide")

@@ -15,4 +15,4 @@ class Calculation:
         return self.operation.execute(self.a, self.b)
 
     def __repr__(self):
-        return f"Calculation({self.a}, {self.b}, {self.operation.__class__.__name__})"
+        return f"Calculation({self.a}, {self.b}, {self.operation.__class__.__name__.lower().replace('command', '')})"

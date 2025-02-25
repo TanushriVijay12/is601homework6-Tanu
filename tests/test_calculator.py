@@ -1,11 +1,6 @@
-from decimal import Decimal
-
 import pytest
+from decimal import Decimal
 from calculator import Calculator
-from calculator.commands.add import AddCommand
-from calculator.commands.subtract import SubtractCommand
-from calculator.commands.multiply import MultiplyCommand
-from calculator.commands.divide import DivideCommand
 
 def test_calculator_add():
     '''Test that addition command works'''
