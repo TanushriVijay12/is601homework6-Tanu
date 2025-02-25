@@ -31,3 +31,14 @@ def test_calculator_divide_by_zero():
     calc = Calculator()
     with pytest.raises(ValueError, match="Cannot divide by zero"):
         calc.commands["divide"].execute(Decimal('10'), Decimal('0'))
+
+def test_menu_command(capsys):
+    calc = Calculator()
+    calc.commands["menu"].execute()
+    captured = capsys.readouterr()
+    assert "Available commands:" in captured.out
+    assert "- add" in captured.out
+    assert "- subtract" in captured.out
+    assert "- multiply" in captured.out
+    assert "- divide" in captured.out
+    assert "- menu" in captured.out
