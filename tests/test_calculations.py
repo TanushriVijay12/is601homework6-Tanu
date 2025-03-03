@@ -2,16 +2,17 @@ from decimal import Decimal
 import pytest
 from calculator.calculation import Calculation
 from calculator.calculations import Calculations
-from calculator.operations import add, subtract
+from calculator.commands.add import AddCommand
+from calculator.commands.subtract import SubtractCommand
 
 @pytest.fixture
 def setup_calculations():
     Calculations.clear_history()
-    Calculations.add_calculation(Calculation(Decimal('15'), Decimal('7'), add))
-    Calculations.add_calculation(Calculation(Decimal('30'), Decimal('5'), subtract))
+    Calculations.add_calculation(Calculation(Decimal('15'), Decimal('7'), AddCommand()))
+    Calculations.add_calculation(Calculation(Decimal('30'), Decimal('5'), SubtractCommand()))
 
 def test_add_calculation(setup_calculations):
-    calc = Calculation(Decimal('3'), Decimal('2'), add)
+    calc = Calculation(Decimal('3'), Decimal('2'), AddCommand)
     Calculations.add_calculation(calc)
     assert Calculations.get_latest() == calc, "Failed to add the calculation to the history"
 
