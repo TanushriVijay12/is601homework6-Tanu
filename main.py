@@ -1,6 +1,5 @@
 from decimal import Decimal, InvalidOperation
 from calculator import Calculator
-from dotenv import load_dotenv
 import os
 
 def calculate_and_print(a, b, operation_name):
