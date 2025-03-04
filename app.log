@@ -14,3 +14,22 @@
 2025-03-03 18:57:59,585 - INFO - Plugin 'power' loaded successfully.
 2025-03-03 18:57:59,585 - INFO - Calculator initialized successfully.
 2025-03-03 18:57:59,585 - INFO - The result of 5 power 3 is equal to 125
+2025-03-03 19:05:32,118 - INFO - Environment variables loaded.
+2025-03-03 19:05:32,119 - INFO - Logging configured.
+2025-03-03 19:05:32,120 - INFO - Plugin 'square_root' loaded successfully.
+2025-03-03 19:05:32,120 - INFO - Plugin 'power' loaded successfully.
+2025-03-03 19:05:32,120 - INFO - Calculator initialized successfully.
+2025-03-03 19:05:32,120 - INFO - The result of 5 power 3 is equal to 125
+2025-03-03 19:05:45,084 - INFO - Environment variables loaded.
+2025-03-03 19:05:45,084 - INFO - Logging configured.
+2025-03-03 19:05:45,085 - INFO - Plugin 'square_root' loaded successfully.
+2025-03-03 19:05:45,085 - INFO - Plugin 'power' loaded successfully.
+2025-03-03 19:05:45,085 - INFO - Calculator initialized successfully.
+2025-03-03 19:05:45,085 - INFO - The result of 5 add 3 is equal to 8
+2025-03-03 19:05:49,813 - INFO - Environment variables loaded.
+2025-03-03 19:05:49,813 - INFO - Logging configured.
+2025-03-03 19:05:49,814 - INFO - Plugin 'square_root' loaded successfully.
+2025-03-03 19:05:49,814 - INFO - Plugin 'power' loaded successfully.
+2025-03-03 19:05:49,814 - INFO - Calculator initialized successfully.
+2025-03-03 19:05:49,814 - INFO - The result of 5 divide 3 is equal to 1.666666666666666666666666667
+2025-03-03 19:08:31,818 - INFO - The result of 5 add 3 is equal to 8
