@@ -29,7 +29,7 @@ def calculate_and_print(a, b, operation_name):
         calculator = Calculator()
         if operation_name in calculator.commands:
             result = calculator.commands[operation_name].execute(a_decimal, b_decimal)
-            logging.info(f"The result of {a} {operation_name} {b} is equal to {result}")        
+            print(f"The result of {a} {operation_name} {b} is equal to {result}")
         else:
             raise ValueError(f"Unknown operation: {operation_name}")
     except InvalidOperation:
