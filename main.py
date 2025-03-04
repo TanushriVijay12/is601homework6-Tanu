@@ -3,7 +3,20 @@ from calculator import Calculator
 import os
 from dotenv import load_dotenv
 import os
+import logging
 
+# Configure logging
+logging.basicConfig(
+    filename="app.log",  # Log file name
+    level=logging.INFO,   # Logging level
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
+# Example usage
+logging.info("Application has started")
+logging.warning("This is a warning message")
+logging.error("This is an error message")
+print("Logging setup complete. Check app.log for details.")
 # Load environment variables from .env file
 load_dotenv()
 
