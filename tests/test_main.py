@@ -1,3 +1,4 @@
+from unittest.mock import patch
 import pytest
 from main import calculate_and_print  # Ensure this import matches your project structure
 
@@ -12,6 +13,7 @@ from main import calculate_and_print  # Ensure this import matches your project 
     ("a", "3", 'add', "Invalid number input: a or 3 is not a valid number."),  # Testing invalid number input
     ("5", "b", 'subtract', "Invalid number input: 5 or b is not a valid number.")  # Testing another invalid number input
 ])
+@patch.dict('os.environ', {'LOG_LEVEL': 'INFO', 'DEBUG_MODE': 'False', 'LOG_FILE': 'app.log'})
 def test_calculate_and_print(a_string, b_string, operation_string, expected_string, capsys):
     calculate_and_print(a_string, b_string, operation_string)
     captured = capsys.readouterr()
