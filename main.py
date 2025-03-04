@@ -1,6 +1,14 @@
 from decimal import Decimal, InvalidOperation
 from calculator import Calculator
 import os
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
+
+ENVIRONMENT = os.getenv("ENVIRONMENT", "production")  # Default to 'production' if not set
+print(f"Running in {ENVIRONMENT} mode")
 
 def calculate_and_print(a, b, operation_name):
     try:
