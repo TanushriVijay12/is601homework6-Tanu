@@ -1,23 +1,27 @@
-import logging
-import os
 from decimal import Decimal, InvalidOperation
-from dotenv import load_dotenv  # Load environment variables
 from calculator import Calculator
-
-# Load environment variables from .env file
-load_dotenv()
-
-# Get environment variables
-LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()  # Default to INFO
-DEBUG_MODE = os.getenv("DEBUG_MODE", "False").lower() == "true"  # Convert string to boolean
-LOG_FILE = os.getenv("LOG_FILE", "app.log")  # Default log file
-
-# Configure logging based on environment variables
+from dotenv import load_dotenv
+import os
+import logging
+load_dotenv()  # Load .env file
+# Configure Logging
 logging.basicConfig(
-    filename=LOG_FILE,
-    level=getattr(logging, LOG_LEVEL, logging.INFO),  # Convert string to logging level
+    filename="app.log",  # Log file
+    level=logging.INFO,  # Set logging level
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
+
+# Example Usage
+logging.info("Application has started.")
+logging.warning("This is a warning message.")
+logging.error("An error occurred!")
+
+print("Logging setup complete. Check app.log for details.")
+ENVIRONMENT = os.getenv("ENVIRONMENT", "production")
+DEBUG_MODE = os.getenv("DEBUG_MODE", "False")
+SECRET_KEY = os.getenv("SECRET_KEY")
+
+print(f"Running in {ENVIRONMENT} mode. Debug: {DEBUG_MODE}")
 
 def calculate_and_print(a, b, operation_name):
     try:
@@ -25,28 +29,22 @@ def calculate_and_print(a, b, operation_name):
         calculator = Calculator()
         if operation_name in calculator.commands:
             result = calculator.commands[operation_name].execute(a_decimal, b_decimal)
-            message = f"The result of {a} {operation_name} {b} is equal to {result}"
-            logging.info(message)  # Log success
-            if DEBUG_MODE:
-                print(message)  # Print only if DEBUG_MODE is enabled
+            print(f"The result of {a} {operation_name} {b} is equal to {result}")
         else:
             raise ValueError(f"Unknown operation: {operation_name}")
     except InvalidOperation:
-        error_message = f"Invalid number input: {a} or {b} is not a valid number."
-        logging.error(error_message)  # Log error
-        if DEBUG_MODE:
-            print(error_message)
+        print(f"Invalid number input: {a} or {b} is not a valid number.")
     except ValueError as e:
-        logging.error(str(e))  # Log error
-        if DEBUG_MODE:
-            print(e)
+        print(e)
 
 def main():
     import sys
     if len(sys.argv) == 4:
+        # Command-line mode
         _, a, b, operation_name = sys.argv
         calculate_and_print(a, b, operation_name)
     else:
+        # Interactive REPL mode
         calculator = Calculator()
         calculator.run()
 
