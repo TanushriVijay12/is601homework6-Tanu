@@ -8,3 +8,9 @@
 2025-03-03 18:48:42,724 - INFO - Calculator application started.
 2025-03-03 18:48:46,872 - INFO - Command 'add' executed successfully with inputs 2, 3. Result: 5
 2025-03-03 18:48:49,320 - INFO - Calculator application exited.
+2025-03-03 18:57:59,583 - INFO - Environment variables loaded.
+2025-03-03 18:57:59,583 - INFO - Logging configured.
+2025-03-03 18:57:59,584 - INFO - Plugin 'square_root' loaded successfully.
+2025-03-03 18:57:59,585 - INFO - Plugin 'power' loaded successfully.
+2025-03-03 18:57:59,585 - INFO - Calculator initialized successfully.
+2025-03-03 18:57:59,585 - INFO - The result of 5 power 3 is equal to 125

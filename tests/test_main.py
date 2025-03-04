@@ -1,6 +1,6 @@
 import pytest
 from main import calculate_and_print  # Ensure this import matches your project structure
-
+from main import main
 # Parameterize the test function to cover different operations and scenarios, including errors
 @pytest.mark.parametrize("a_string, b_string, operation_string, expected_string", [
     ("5", "3", 'add', "The result of 5 add 3 is equal to 8"),
@@ -21,7 +21,6 @@ def test_repl_loop_exit(monkeypatch, capsys):
     '''Test that the REPL loop exits when 'exit' is entered'''
     # Simulate user input of 'exit'
     monkeypatch.setattr('builtins.input', lambda _: 'exit')
-    from main import main
     main()
     captured = capsys.readouterr()
     assert "Exiting calculator. Goodbye!" in captured.out
