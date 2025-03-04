@@ -2,9 +2,21 @@ from decimal import Decimal, InvalidOperation
 from calculator import Calculator
 from dotenv import load_dotenv
 import os
-
+import logging
 load_dotenv()  # Load .env file
+# Configure Logging
+logging.basicConfig(
+    filename="app.log",  # Log file
+    level=logging.INFO,  # Set logging level
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
+# Example Usage
+logging.info("Application has started.")
+logging.warning("This is a warning message.")
+logging.error("An error occurred!")
+
+print("Logging setup complete. Check app.log for details.")
 ENVIRONMENT = os.getenv("ENVIRONMENT", "production")
 DEBUG_MODE = os.getenv("DEBUG_MODE", "False")
 SECRET_KEY = os.getenv("SECRET_KEY")
