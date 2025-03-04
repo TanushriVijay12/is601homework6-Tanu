@@ -8,23 +8,16 @@ from calculator import Calculator
 load_dotenv()
 
 # Get environment variables
-LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()  # Default to INFO if not set
-DEBUG_MODE = os.getenv("DEBUG_MODE", "False").lower() == "true"  # Default to False, convert string to boolean
-LOG_FILE = os.getenv("LOG_FILE", "app.log")  # Default log file name
+LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()  # Default to INFO
+DEBUG_MODE = os.getenv("DEBUG_MODE", "False").lower() == "true"  # Convert string to boolean
+LOG_FILE = os.getenv("LOG_FILE", "app.log")  # Default log file
 
 # Configure logging based on environment variables
 logging.basicConfig(
     filename=LOG_FILE,
-    level=getattr(logging, LOG_LEVEL, logging.INFO),  # Convert string to logging level (e.g., INFO -> logging.INFO)
+    level=getattr(logging, LOG_LEVEL, logging.INFO),  # Convert string to logging level
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
-
-# If DEBUG_MODE is True, also output logs to the console
-if DEBUG_MODE:
-    console_handler = logging.StreamHandler()
-    console_handler.setLevel(getattr(logging, LOG_LEVEL, logging.INFO))
-    console_handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
-    logging.getLogger().addHandler(console_handler)
 
 def calculate_and_print(a, b, operation_name):
     try:
