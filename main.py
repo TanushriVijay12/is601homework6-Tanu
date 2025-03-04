@@ -1,5 +1,15 @@
 from decimal import Decimal, InvalidOperation
 from calculator import Calculator
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # Load .env file
+
+ENVIRONMENT = os.getenv("ENVIRONMENT", "production")
+DEBUG_MODE = os.getenv("DEBUG_MODE", "False")
+SECRET_KEY = os.getenv("SECRET_KEY")
+
+print(f"Running in {ENVIRONMENT} mode. Debug: {DEBUG_MODE}")
 
 def calculate_and_print(a, b, operation_name):
     try:
