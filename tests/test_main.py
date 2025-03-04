@@ -15,7 +15,9 @@ from main import main
 def test_calculate_and_print(a_string, b_string, operation_string, expected_string, capsys):
     calculate_and_print(a_string, b_string, operation_string)
     captured = capsys.readouterr()
+    print("Captured Output:", captured.out.strip())  # Print the actual output
     assert captured.out.strip() == expected_string
+
 
 def test_repl_loop_exit(monkeypatch, capsys):
     '''Test that the REPL loop exits when 'exit' is entered'''
